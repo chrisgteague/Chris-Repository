@@ -38,18 +38,18 @@ public class LoginAndRegister {
     }
 
     public static void main(String[] args) {
-        JTextField userName = new JTextField();
-        JTextField passWord = new JPasswordField();
+        JTextField yourUserName = new JTextField();
+        JTextField yourPassWord = new JPasswordField();
         Object[] message = {
-            "Username:", userName,
-            "Password:", passWord
+            "Username:", yourUserName,
+            "Password:", yourPassWord
 
         };
 
         int option = JOptionPane.showConfirmDialog(null, message, "Sign Up", JOptionPane.OK_CANCEL_OPTION);
         if (option == JOptionPane.OK_OPTION) {
 
-            if (checkUserName(userName.getText())) {
+            if (checkUserName(yourUserName.getText())) {
                 System.out.println("Username successfully captured");
 
             } else {
@@ -62,7 +62,7 @@ public class LoginAndRegister {
                         + "more than 5\n"
                         + "characters in length.");
             }
-            if (checkPassWord(passWord.getText())) {
+            if (checkPassWord(yourPassWord.getText())) {
                 System.out.println("Password successfully captured");
             } else {
                 System.out.println("\nPassword is not\n"
