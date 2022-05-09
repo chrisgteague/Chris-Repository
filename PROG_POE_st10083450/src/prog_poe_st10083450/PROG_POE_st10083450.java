@@ -7,10 +7,13 @@ public class PROG_POE_st10083450
 
     
 
-    public static void main(String[] args)
+   public static Boolean loginUser(){
     {
     
         
     }
+       return null;
+       
 
+}
 }
