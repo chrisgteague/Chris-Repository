@@ -1,4 +1,3 @@
-
 package prog_poe_st10083450;
 
 import javax.swing.*;
@@ -6,12 +5,13 @@ import javax.swing.*;
 public class Login
 {
 
+   
     public static boolean checkUserName(String u)
     {
         return u.length() < 6 && u.contains("_");
-
+        
     }
-
+    
     public static boolean checkPassWordComplexity(String p)
     {
         boolean hasCapitals = false;
@@ -19,7 +19,7 @@ public class Login
         boolean hasNumbers = false;
         for (int i = 0; i < p.length(); i++)
         {
-
+            
             if (Character.isUpperCase(p.charAt(i)))
             {
                 hasCapitals = true;
@@ -28,37 +28,46 @@ public class Login
             {
                 hasNumbers = true;
             }
-
+            
             if (!Character.isAlphabetic(p.charAt(i)) && !hasNumbers && !Character.isWhitespace(p.charAt(i)))
             {
                 hasSpecialChar = true;
-
+                
             }
         }
-
+        
         return p.length() > 7 && hasCapitals && hasNumbers && hasSpecialChar;
     }
     //void main(String[] args)
 
-    public static String registerUser()
+    private static String registerUser()
     {
-        JTextField yourUserName = new JTextField();
-        JTextField yourPassWord = new JPasswordField();
+        JTextField yourFirstName = new JTextField();
+        JTextField yourSurName = new JTextField();
+        JTextField signUpUserName = new JTextField();
+        JTextField singUpPassword = new JPasswordField();
         Object[] message =
         {
-            "Username:", yourUserName,
-            "Password:", yourPassWord
-
+            "Name:", yourFirstName,
+            "Surname:", yourSurName,
+            "Username:", signUpUserName,
+            "Password:", singUpPassword
+        
         };
-
+        
         int option = JOptionPane.showConfirmDialog(null, message, "Sign Up", JOptionPane.OK_CANCEL_OPTION);
+        if (option == JOptionPane.OK_CANCEL_OPTION)
+        {
+            System.exit(0);
+        }
+        
         if (option == JOptionPane.OK_OPTION)
         {
-
-            if (checkUserName(yourUserName.getText()))
+            
+            if (checkUserName(signUpUserName.getText()))
             {
                 JOptionPane.showMessageDialog(null, "Username successfully captured");
-
+                
             } else
             {
                 JOptionPane.showMessageDialog(null, "Username is not\n"
@@ -70,7 +79,7 @@ public class Login
                         + "more than 5\n"
                         + "characters in length.");
             }
-            if (checkPassWordComplexity(yourPassWord.getText()))
+            if (checkPassWordComplexity(singUpPassword.getText()))
             {
                 JOptionPane.showMessageDialog(null, "Password successfully captured");
             } else
@@ -85,8 +94,49 @@ public class Login
                         + "a special character.");
             }
         }
-        return null;
-
+        return registerUser();
+        
     }
-
+    
+    private Boolean loginUser()
+    {
+        
+        registerUser();
+        JTextField fairyTailZero = new JTextField(); //fairyTailZero = username
+        JTextField acnologia = new JPasswordField(); //acnologia = password
+        Object[] message =
+        {
+            "Username:", fairyTailZero,
+            "Password:", acnologia
+        };
+        
+        int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
+        if (option == JOptionPane.OK_CANCEL_OPTION)
+        {
+            System.exit(0);
+        }
+        if (option == JOptionPane.OK_OPTION)
+        {
+            if (fairyTailZero.getText().equals("") && acnologia.getText().equals("h"))
+            {
+                JOptionPane.showMessageDialog(null, "Login successful");
+            } else
+            {
+                JOptionPane.showMessageDialog(null, "login failed");
+            }
+        } else
+        {
+            JOptionPane.showMessageDialog(null, "Login canceled");
+        }
+        
+        return loginUser();
+        
+    }
+    
+    public static String returnLoginStatus()
+    {
+        
+        return returnLoginStatus();
+        
+    }
 }
