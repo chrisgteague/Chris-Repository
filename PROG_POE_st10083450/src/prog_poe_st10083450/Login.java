@@ -40,7 +40,7 @@ public class Login
     }
     //void main(String[] args)
 
-    private static String registerUser()
+    public static String registerUser()
     {
         JTextField yourFirstName = new JTextField();
         JTextField yourSurName = new JTextField();
@@ -98,16 +98,16 @@ public class Login
         
     }
     
-    private Boolean loginUser()
+    public static boolean loginUser()
     {
         
-        registerUser();
-        JTextField fairyTailZero = new JTextField(); //fairyTailZero = username
-        JTextField acnologia = new JPasswordField(); //acnologia = password
+       
+        JTextField loginUserNamer = new JTextField(); //fairyTailZero = username
+        JTextField loginPassWord = new JPasswordField(); //acnologia = password
         Object[] message =
         {
-            "Username:", fairyTailZero,
-            "Password:", acnologia
+            "Username:", loginUserNamer,
+            "Password:", loginPassWord
         };
         
         int option = JOptionPane.showConfirmDialog(null, message, "Login", JOptionPane.OK_CANCEL_OPTION);
@@ -115,28 +115,41 @@ public class Login
         {
             System.exit(0);
         }
+        
+        
+        return true;
+        
+    }
+    
+   /* public static String returnLoginStatus()
+    {
         if (option == JOptionPane.OK_OPTION)
         {
-            if (fairyTailZero.getText().equals("") && acnologia.getText().equals("h"))
+            if (fairyTailZero.getText().equals("") && acnologia.getText().equals(""))
             {
                 JOptionPane.showMessageDialog(null, "Login successful");
             } else
             {
                 JOptionPane.showMessageDialog(null, "login failed");
+                return false;
             }
         } else
         {
             JOptionPane.showMessageDialog(null, "Login canceled");
         }
         
-        return loginUser();
         
-    }
-    
-    public static String returnLoginStatus()
-    {
+        
+        
+        
+        
+        
+        
+        
+        
         
         return returnLoginStatus();
         
     }
+*/
 }
