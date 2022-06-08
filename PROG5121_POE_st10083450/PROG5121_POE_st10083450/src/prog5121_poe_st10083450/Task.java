@@ -15,9 +15,7 @@ public class Task
     String statusTask;
     String theTaskNumStr;
     String allTheTaskDetails;
-    String taskToDo = " To Do";
-    String taskDone = " Done ";
-    String taskDoing = " Doing ";
+    String selectionString;
     
     public boolean checkTaskDescription(String lengthDescription)
     {
@@ -43,10 +41,16 @@ public class Task
 
     public int returnTotalHours()
     {
-        taskHrs = +totalDurationHrs;
+       totalDurationHrs += taskHrs;   
         return totalDurationHrs;
     }
-
+//code attribution
+//this method was taken from Stackoverflow
+//https://stackoverflow.com/questions/15253406/get-the-last-three-chars-from-any-string-java
+//Egor
+//https://stackoverflow.com/users/543539/egor
+//Dave Jarvis
+//https://stackoverflow.com/users/59087/dave-jarvis
     public String createTaskID(String nameTask, String devName)
     {
         String lastThreeLetters = null;
@@ -75,9 +79,9 @@ public class Task
     }
     public String printTaskDetails(){
         
-       String printTask= "Task Status - "  + statusTask            
+       String printTask= "Task Status - "  + selectionString            
                             + "\n" + "Developer Name - " + devName
-                            + "\n" + "Task Number - " + theTaskNumStr
+                            + "\n" + "Task Number - " + Integer.toString(numTask - 1)
                             + "\n" + "Task Name - " + nameTask
                             + "\n" + "Task Description - " + lengthDescription
                             + "\n" + "Task ID - " + createTaskID(nameTask, devName)

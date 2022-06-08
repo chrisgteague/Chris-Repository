@@ -62,41 +62,22 @@ public class PROG5121_POE_st10083450
                     int taskHrs = Integer.parseInt(JOptionPane.showInputDialog(" Please input the hours of the task duration "));
                     theTasks.taskHrs = taskHrs;
 
-                    int currentStatus = Integer.parseInt(JOptionPane.showInputDialog(" Welcome to EasyKanban, Please select what you would like to do"
-                            + "\n" + " 1 - To Do "
-                            + "\n" + " 2 - Done"
-                            + "\n" + " 3 - Doing"));
+                    Object[] options =
+                    {
+                        "To Do", "Done", "Doing"
+                    };
+                    Object selectionObject = JOptionPane.showInputDialog(null, "Choose", "Menu", JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+                    theTasks.selectionString = selectionObject.toString();
 
                     JOptionPane.showMessageDialog(null, theTasks.printTaskDetails());
-                    JOptionPane.showMessageDialog(null, "Total Hours" + theTasks.taskHrs);
-                    
-                    switch (currentStatus)
-                    {
-
-                        case 1:
-
-                            theTasks.statusTask = " To Do ";
-                            break;
-                        case 2:
-                            theTasks.statusTask = " Done ";
-                            break;
-                        case 3:
-                            theTasks.statusTask = " Doing ";
-                            break;
-
-                    }
-
-                   
-                    
-            
-            
+                    JOptionPane.showMessageDialog(null, "Total Hours - " + theTasks.taskHrs);
+                    break;
                 case 2:
-
                     JOptionPane.showMessageDialog(null, "Coming Soon");
                     break;
                 case 3:
                     System.exit(0);
-
+                    break;
             }
 
         }
