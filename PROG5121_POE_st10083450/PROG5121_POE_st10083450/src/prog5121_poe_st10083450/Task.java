@@ -17,6 +17,7 @@ public class Task
     String allTheTaskDetails;
     String selectionString;
     int numOfTasksToAdd;
+    String theTaskID;
     
     public boolean checkTaskDescription(String lengthDescription)
     {
@@ -74,9 +75,11 @@ public class Task
         {
             firstTwoLetters = devName.substring(0, 2);
         }
-
-        return firstTwoLetters.toUpperCase() + ":" + Integer.toString(numTask - 1) + ":" + lastThreeLetters.toUpperCase();
-
+//theTaskID = firstTwoLetters.toUpperCase() + ":" + Integer.toString(numTask - 1) + ":" + lastThreeLetters.toUpperCase();
+        String theTaskID = firstTwoLetters + ":" + Integer.toString(numTask - 1) + ":" + lastThreeLetters;
+        
+        return theTaskID.toUpperCase();
+//return firstTwoLetters.toUpperCase() + ":" + Integer.toString(numTask - 1) + ":" + lastThreeLetters.toUpperCase();
     }
     public String printTaskDetails(){
         

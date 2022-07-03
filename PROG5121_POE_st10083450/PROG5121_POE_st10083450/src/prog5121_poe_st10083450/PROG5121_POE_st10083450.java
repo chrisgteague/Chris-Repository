@@ -14,7 +14,8 @@ public class PROG5121_POE_st10083450
     {
         Login register = new Login();
         Task theTasks = new Task();
-
+        StoreAndSearch storeArray = new StoreAndSearch();
+        
         String firstName = JOptionPane.showInputDialog("FirstName: ");
         String secondName = JOptionPane.showInputDialog("Lastname: ");
         String userName = JOptionPane.showInputDialog("Username: ");
@@ -72,15 +73,43 @@ public class PROG5121_POE_st10083450
 
                     JOptionPane.showMessageDialog(null, theTasks.printTaskDetails());
                     JOptionPane.showMessageDialog(null, "Total Hours - " + theTasks.taskHrs);
+                    
+                    storeArray.taskStorage(theTasks.devName,theTasks.nameTask, theTasks.numTask-1, theTasks.taskHrs, theTasks.statusTask, theTasks.theTaskID);
+                    
                     break;
                 case 2:
-                    JOptionPane.showMessageDialog(null, "Coming Soon");
-                    break;
+                    storeArray.displayLongestDuration();
+                    storeArray.showTaskInfoStatusDone();
+                    
+                    
+                    String devNameLocate =(JOptionPane.showInputDialog("Enter the name of the Developer you want to locate"));
+                    storeArray.searchForDevTasks(devNameLocate);
+                    
+                    String taskNameLocate =(JOptionPane.showInputDialog("Enter the name of the Task you want to locate"));
+                    storeArray.locateTheTask(taskNameLocate);
+                    
+                    String taskDeletion =(JOptionPane.showInputDialog("Enter the name of the Task you want to delete"));
+                    storeArray.taskTermination(taskDeletion);
+                    
+                     break;
                 case 3:
                     System.exit(0);
                     break;
             }
 
-        }   
+        } 
+        
+     
+        
+        
+        
     }
+    
 }
+                    
+                    
+                    
+                   
+                   
+                    
+                  

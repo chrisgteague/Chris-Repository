@@ -20,19 +20,6 @@ public class StoreAndSearch
         theDev[taskLocation] = devTask;
     }
 
-    public void showTaskInformation()
-    {
-        for (int i = 0; i < theDev.length; i++)
-        {
-            JOptionPane.showMessageDialog(null, "Developer: " + theDev[i]
-                    + "\n" + "Task Name: " + theTaskName[i]
-                    + "\n" + "Task ID: " + idTask[i]
-                    + "\n" + "Task Duration: " + durationTask[i]
-                    + "\n" + "Task Status: " + taskStats[i]);
-        }
-
-    }
-
     public void showTaskInfoStatusDone()
     {
         for (int i = 0; i < theDev.length; i++)
@@ -41,11 +28,97 @@ public class StoreAndSearch
             if (taskStats[i] == ("Done"))
             {
 
-                JOptionPane.showMessageDialog(null, "Developer Name: " + theDev[i]
-                        + "\n" + "Task Name: " + theTaskName[i]
-                        + "\n" + "Task Duration: " + durationTask[i]);
+                JOptionPane.showMessageDialog(null, "Developer Name - " + theDev[i]
+                        + "\n" + "Task Name - " + theTaskName[i]
+                        + "\n" + "Task Duration - " + durationTask[i]);
 
             }
+        }
+    }
+
+    public void showTaskInformation()
+    {
+        for (int i = 0; i < theDev.length; i++)
+        {
+            if (theDev[i] != null)
+            {
+                JOptionPane.showMessageDialog(null, "Task Report: "
+                        + "\n" + "Developer - " + theDev[i]
+                        + "\n" + "Task Name - " + theTaskName[i]
+                        + "\n" + "Task ID - " + idTask[i]
+                        + "\n" + "Task Duration - " + durationTask[i]
+                        + "\n" + "Task Status - " + taskStats[i]);
+            }
+        }
+
+    }
+
+    public void taskTermination(String currentTask)
+    {
+        int taskLocation = 1;
+        for (int i = 0; i < theDev.length; i++)
+        {
+            JOptionPane.showMessageDialog(null, theTaskName[i] + " " + i + " " + currentTask);
+            if (theTaskName[i] == currentTask)
+            {
+                taskLocation = i;
+            }
+        }
+        if (taskLocation == 1)
+        {
+            JOptionPane.showMessageDialog(null, "Developer not Found!");
+        } else
+        {
+
+            theDev[taskLocation] = " ";
+            theTaskName[taskLocation] = " ";
+            idTask[taskLocation] = " ";
+            durationTask[taskLocation] = 0;
+            taskStats[taskLocation] = " ";
+
+            JOptionPane.showMessageDialog(null, "Task has been deleted");
+        }
+    }
+
+    public void searchForDevTasks(String developerName)
+    {
+        int taskLocation = 0;
+        for (int i = 0; i < theDev.length; i++)
+        {
+            if (theDev[i] == (developerName))
+            {
+                taskLocation = i;
+            }
+        }
+        if (taskLocation == 0)
+        {
+            JOptionPane.showMessageDialog(null, "Task not Found!");
+        } else
+        {
+            JOptionPane.showMessageDialog(null, "Task Name - " + theTaskName[taskLocation]);
+        }
+    }
+
+    public void locateTheTask(String currentTask)
+    {
+        int taskLocation = 0;
+        for (int i = 0; i < theDev.length; i++)
+        {
+
+            if (theTaskName[i] == (currentTask))
+            {
+                taskLocation = i;
+            }
+        }
+        if (taskLocation == 0)
+        {
+            JOptionPane.showMessageDialog(null, "Tasks not Found!");
+        } else
+        {
+            JOptionPane.showMessageDialog(null, "Developer Name - " + theDev[taskLocation]
+                    + "\n" + "Task Name - " + theTaskName[taskLocation]
+                    + "\n" + "Task Duration - " + durationTask[taskLocation]);
+
         }
     }
 
@@ -53,92 +126,19 @@ public class StoreAndSearch
     {
 
         int longestTaskDuration = 0;
-        String longestTaskID = " ";
-        int taskIndex = 0;
+        int taskLocation = 0;
         for (int i = 0; i < theDev.length; i++)
         {
             if (durationTask[i] > longestTaskDuration)
             {
-
                 longestTaskDuration = durationTask[i];
-                longestTaskID = idTask[i];
-                taskIndex = i;
+                taskLocation = i;
             }
         }
 
-        JOptionPane.showMessageDialog(null, "Developer Name: " + theDev[taskIndex]
-                + "\n" + "Task Name: " + theTaskName[taskIndex]
-                + "\n" + "Task Duration: " + durationTask[taskIndex]);
+        JOptionPane.showMessageDialog(null, "Developer Name - " + theDev[taskLocation]
+                + "\n" + "Task Name - " + theTaskName[taskLocation]
+                + "\n" + "Task Duration - " + durationTask[taskLocation]);
 
     }
-
-    public void locateTheTask(String taskLocation)
-    {
-        int taskIndex = 0;
-        for (int i = 0; i < theDev.length; i++)
-        {
-
-            if (theTaskName[i] == (taskLocation))
-            {
-                taskIndex = i;
-            }
-        }
-        if (taskIndex == 0)
-        {
-            JOptionPane.showMessageDialog(null, "Tasks not Found!");
-        } else
-        {
-            JOptionPane.showMessageDialog(null, "Developer Name: " + theDev[taskIndex]
-                    + "\n" + "Task Name: " + theTaskName[taskIndex]
-                    + "\n" + "Task Duration: " + durationTask[taskIndex]);
-
-        }
-    }
-
-    public void searchForTasks(String developerName)
-    {
-        int taskIndex = 0;
-        for (int i = 0; i < theDev.length; i++)
-        {
-            if (theDev[i] == (developerName))
-            {
-                taskIndex = i;
-            }
-        }
-        if (taskIndex == 0)
-        {
-            JOptionPane.showMessageDialog(null, "Task not Found!");
-        } else
-        {
-            JOptionPane.showMessageDialog(null, "Task Name: " + theTaskName[taskIndex]);
-        }
-    }
-
-    public void taskTermination(String tasklocation)
-    {
-        int taskIndex = 1;
-        for (int i = 0; i < theDev.length; i++)
-        {
-            JOptionPane.showMessageDialog(null, theTaskName[i] + " " + i + " " + tasklocation);
-            if (theTaskName[i] == tasklocation)
-            {
-                taskIndex = i;
-            }
-        }
-        if (taskIndex == 1)
-        {
-            JOptionPane.showMessageDialog(null, "Developer not Found!");
-        } else
-        {
-
-            theDev[taskIndex] = " ";
-            theTaskName[taskIndex] = " ";
-            idTask[taskIndex] = " ";
-            durationTask[taskIndex] = 0;
-            taskStats[taskIndex] = " ";
-
-            JOptionPane.showMessageDialog(null, "Task has been deleted");
-        }
-    }
-
 }
