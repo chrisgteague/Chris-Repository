@@ -16,6 +16,7 @@ public class Task
     String theTaskNumStr;
     String allTheTaskDetails;
     String selectionString;
+    int numOfTasksToAdd;
     
     public boolean checkTaskDescription(String lengthDescription)
     {
