@@ -79,7 +79,7 @@ public class Task
     }
     public String printTaskDetails(){
         
-       String printTask= "Task Status - "  + selectionString            
+       String printTask = "Task Status - "  + selectionString            
                             + "\n" + "Developer Name - " + devName
                             + "\n" + "Task Number - " + Integer.toString(numTask - 1)
                             + "\n" + "Task Name - " + nameTask

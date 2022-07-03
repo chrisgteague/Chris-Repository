@@ -49,6 +49,7 @@ public class PROG5121_POE_st10083450
             switch (theTasks.selection)
             {
                 case 1:
+                    JOptionPane.showInputDialog("Please input the number of tasks you would like to add:");
                     theTasks.nameTask = JOptionPane.showInputDialog(" Please input task name");
 
                     int theTaskNum = theTasks.numTask++;
@@ -80,7 +81,6 @@ public class PROG5121_POE_st10083450
                     break;
             }
 
-        }
-
+        }   
     }
 }
