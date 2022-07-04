@@ -13,9 +13,15 @@ public class PROG5121_POE_st10083450
     public static void main(String[] args)
     {
         Login register = new Login();
-        Task theTasks = new Task();
-        StoreAndSearch storeArray = new StoreAndSearch();
-        
+        //code attribution
+        //this method was taken from StackAbuse
+        //https://stackabuse.com/how-to-declare-and-initialize-an-array-in-java/
+        //Mohamed Echout
+        //https://stackabuse.com/author/mohamed/
+        Task[] theTasks = new Task[50];
+
+        int currentNumTasks = 0;
+
         String firstName = JOptionPane.showInputDialog("FirstName: ");
         String secondName = JOptionPane.showInputDialog("Lastname: ");
         String userName = JOptionPane.showInputDialog("Username: ");
@@ -39,77 +45,205 @@ public class PROG5121_POE_st10083450
             }
 
         }
-        while (theTasks.selection != 3)
+        int userChoice = 0;
+        while (userChoice != 3)
         {
 
-            theTasks.selection = Integer.parseInt(JOptionPane.showInputDialog(" Welcome to EasyKanban, Please select what you would like to do"
+            userChoice = Integer.parseInt(JOptionPane.showInputDialog(" Welcome to EasyKanban, Please select what you would like to do"
                     + "\n" + " 1 - Add Tasks "
                     + "\n" + " 2 - Show Report"
                     + "\n" + " 3 - Quit"));
 
-            switch (theTasks.selection)
+            switch (userChoice)
             {
                 case 1:
-                    theTasks.numOfTasksToAdd = Integer.parseInt(JOptionPane.showInputDialog("Please input the number of tasks you would like to add:"));
-                    theTasks.nameTask = JOptionPane.showInputDialog(" Please input task name");
+                    int numTasksToAdd = 0;
 
-                    int theTaskNum = theTasks.numTask++;
-                    String theTaskNumStr = Integer.toString(theTaskNum);
-
-                    theTasks.lengthDescription = JOptionPane.showInputDialog(" Please input task description");
-                    JOptionPane.showMessageDialog(null, theTasks.DescriptTask(theTasks.lengthDescription));
-
-                    theTasks.devName = JOptionPane.showInputDialog(" Please input Developer name and surname");
-
-                    int taskHrs = Integer.parseInt(JOptionPane.showInputDialog(" Please input the hours of the task duration "));
-                    theTasks.taskHrs = taskHrs;
-
-                    Object[] options =
+                    numTasksToAdd = Integer.parseInt(JOptionPane.showInputDialog("Please input the number of tasks you would like to add:"));
+                    for (int i = 0; i < numTasksToAdd; i++)
                     {
-                        "To Do", "Done", "Doing"
-                    };
-                    Object selectionObject = JOptionPane.showInputDialog(null, "Choose", "Menu", JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
-                    theTasks.selectionString = selectionObject.toString();
+                        Task currentTask = new Task();
+                        currentTask.nameTask = JOptionPane.showInputDialog(" Please input task name");
 
-                    JOptionPane.showMessageDialog(null, theTasks.printTaskDetails());
-                    JOptionPane.showMessageDialog(null, "Total Hours - " + theTasks.taskHrs);
-                    
-                    storeArray.taskStorage(theTasks.devName,theTasks.nameTask, theTasks.numTask-1, theTasks.taskHrs, theTasks.statusTask, theTasks.theTaskID);
-                    
+                        currentTask.lengthDescription = JOptionPane.showInputDialog(" Please input task description");
+                        JOptionPane.showMessageDialog(null, currentTask.DescriptTask(currentTask.lengthDescription));
+
+                        currentTask.devName = JOptionPane.showInputDialog(" Please input Developer name and surname");
+
+                        int taskHrs = Integer.parseInt(JOptionPane.showInputDialog(" Please input the hours of the task duration "));
+                        currentTask.taskHrs = taskHrs;
+
+                        Object[] options =
+                        {
+                            "To Do", "Done", "Doing"
+                        };
+                        Object selectionObject = JOptionPane.showInputDialog(null, "Choose", "Menu", JOptionPane.PLAIN_MESSAGE, null, options, options[0]);
+                        currentTask.selectionString = selectionObject.toString();
+
+                        currentTask.numTask = currentNumTasks;
+                        currentTask.createTaskID();
+                        JOptionPane.showMessageDialog(null, currentTask.printTaskDetails());
+                        JOptionPane.showMessageDialog(null, "Total Hours - " + currentTask.taskHrs);
+
+                        theTasks[currentNumTasks] = currentTask;
+                        currentNumTasks++;
+                    }
                     break;
+
                 case 2:
-                    storeArray.displayLongestDuration();
-                    storeArray.showTaskInfoStatusDone();
-                    
-                    
-                    String devNameLocate =(JOptionPane.showInputDialog("Enter the name of the Developer you want to locate"));
-                    storeArray.searchForDevTasks(devNameLocate);
-                    
-                    String taskNameLocate =(JOptionPane.showInputDialog("Enter the name of the Task you want to locate"));
-                    storeArray.locateTheTask(taskNameLocate);
-                    
-                    String taskDeletion =(JOptionPane.showInputDialog("Enter the name of the Task you want to delete"));
-                    storeArray.taskTermination(taskDeletion);
-                    
-                     break;
+                    int arraySelection = 0;
+                    arraySelection = Integer.parseInt(JOptionPane.showInputDialog("Please select what you would like to do:"
+                            + "\n" + " 1 - Tasks that are done"
+                            + "\n" + " 2 - Show Task with Longest duration"
+                            + "\n" + " 3 - Search for Task with Task name"
+                            + "\n" + " 4 - Search for Task with Developer name"
+                            + "\n" + " 5 - Delete Task"
+                            + "\n" + " 6 - Full report on all tasks"));
+
+                    switch (arraySelection)
+                    {
+
+                        case 1:
+
+                            for (int i = 0; i < currentNumTasks; i++)
+                            {
+
+                                if (theTasks[i].selectionString == ("Done"))
+                                {
+
+                                    JOptionPane.showMessageDialog(null, "Developer Name - " + theTasks[i].devName
+                                            + "\n" + "Task Name - " + theTasks[i].nameTask
+                                            + "\n" + "Task Duration - " + theTasks[i].taskHrs);
+
+                                }
+                            }
+                            break;
+                        case 2:
+                            int longestTaskDuration = 0;
+                            int taskLocation = 0;
+                            for (int i = 0; i < currentNumTasks; i++)
+                            {
+                                if (theTasks[i].taskHrs > longestTaskDuration)
+                                {
+                                    longestTaskDuration = theTasks[i].taskHrs;
+                                    taskLocation = i;
+                                }
+                            }
+
+                            JOptionPane.showMessageDialog(null, "Developer Name - " + theTasks[taskLocation].devName
+                                    + "\n" + "Task Name - " + theTasks[taskLocation].nameTask
+                                    + "\n" + "Task Duration - " + theTasks[taskLocation].taskHrs);
+
+                            break;
+
+                        case 3:
+                            String searchTName = JOptionPane.showInputDialog(" Search Task name ");
+                            boolean flag = false;
+                            for (int i = 0; i < currentNumTasks; i++)
+                            {
+
+                                if (theTasks[i].nameTask.equals(searchTName))
+                                {
+
+                                    JOptionPane.showMessageDialog(null, "Task Name - " + theTasks[i].nameTask
+                                            + "\n" + "Developer Name - " + theTasks[i].devName
+                                            + "\n" + "Task Status - " + theTasks[i].selectionString);
+
+                                    flag = true;
+
+                                    break;
+
+                                }
+
+                            }
+                            if (!flag)
+                            {
+                                JOptionPane.showMessageDialog(null, "Task not Found!");
+                            }
+
+                            break;
+
+                        case 4:
+
+                            String searchDevName = JOptionPane.showInputDialog(" Search Developer name ");
+                            boolean devFlag = false;
+                            for (int i = 0; i < currentNumTasks; i++)
+                            {
+
+                                if (theTasks[i].devName.equals(searchDevName))
+                                {
+
+                                    JOptionPane.showMessageDialog(null, "Task Name - " + theTasks[i].nameTask
+                                            + "\n" + "Task Status - " + theTasks[i].selectionString);
+
+                                    devFlag = true;
+
+                                    break;
+
+                                }
+
+                            }
+                            if (!devFlag)
+                            {
+                                JOptionPane.showMessageDialog(null, "Developer not Found!");
+                            }
+
+                            break;
+                        //code attribution
+                        //this method was taken from StackAbuse
+                        //https://stackabuse.com/remove-element-from-an-array-in-java/
+                        //Luka Čupić
+                        //https://stackabuse.com/author/lukacupic/
+                        case 5:
+                            String deleteTask = JOptionPane.showInputDialog(" Search Task name ");
+                            boolean deleteFlag = false;
+                            int deleteLocation = 0;
+                            for (int i = 0; i < currentNumTasks; i++)
+                            {
+
+                                if (theTasks[i].nameTask.equals(deleteTask))
+                                {
+
+                                    deleteLocation = i;
+                                    deleteFlag = true;
+                                    JOptionPane.showMessageDialog(null, "Task has been deleted");
+                                    break;
+
+                                }
+
+                            }
+                            if (!deleteFlag)
+                            {
+                                JOptionPane.showMessageDialog(null, "Task not Found!");
+                            } else
+                            {
+                                for (int i = deleteLocation; i < currentNumTasks; i++)
+                                {
+                                    theTasks[i] = theTasks[i + 1];
+                                }
+                                currentNumTasks--;
+                            }
+                            break;
+                        case 6:
+                            String fullReport = "";
+                            for (int i = 0; i < currentNumTasks; i++)
+                            {
+                                fullReport += theTasks[i].printTaskDetails() + "\n\n";
+
+                            }
+                            JOptionPane.showMessageDialog(null, fullReport);
+
+                            break;
+                    }
+
+                    break;
                 case 3:
                     System.exit(0);
                     break;
             }
 
-        } 
-        
-     
-        
-        
-        
+        }
+
     }
-    
+
 }
-                    
-                    
-                    
-                   
-                   
-                    
-                  

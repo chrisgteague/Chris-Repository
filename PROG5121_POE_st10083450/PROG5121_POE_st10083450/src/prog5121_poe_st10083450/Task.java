@@ -16,8 +16,9 @@ public class Task
     String theTaskNumStr;
     String allTheTaskDetails;
     String selectionString;
-    int numOfTasksToAdd;
+    
     String theTaskID;
+   
     
     public boolean checkTaskDescription(String lengthDescription)
     {
@@ -53,12 +54,13 @@ public class Task
 //https://stackoverflow.com/users/543539/egor
 //Dave Jarvis
 //https://stackoverflow.com/users/59087/dave-jarvis
-    public String createTaskID(String nameTask, String devName)
+    public String createTaskID()
     {
-        String lastThreeLetters = null;
-        String firstTwoLetters;
-
-        if (nameTask.length() == 3)
+       String lastThreeLetters = null;
+       String firstTwoLetters;
+       
+       
+       if (nameTask.length() == 3)
         {
             lastThreeLetters = nameTask;
         }
@@ -75,20 +77,20 @@ public class Task
         {
             firstTwoLetters = devName.substring(0, 2);
         }
-//theTaskID = firstTwoLetters.toUpperCase() + ":" + Integer.toString(numTask - 1) + ":" + lastThreeLetters.toUpperCase();
-        String theTaskID = firstTwoLetters + ":" + Integer.toString(numTask - 1) + ":" + lastThreeLetters;
+       theTaskID = firstTwoLetters + ":" + Integer.toString(numTask) + ":" + lastThreeLetters;
         
         return theTaskID.toUpperCase();
-//return firstTwoLetters.toUpperCase() + ":" + Integer.toString(numTask - 1) + ":" + lastThreeLetters.toUpperCase();
+
+     
     }
     public String printTaskDetails(){
         
        String printTask = "Task Status - "  + selectionString            
                             + "\n" + "Developer Name - " + devName
-                            + "\n" + "Task Number - " + Integer.toString(numTask - 1)
+                            + "\n" + "Task Number - " + Integer.toString(numTask)
                             + "\n" + "Task Name - " + nameTask
                             + "\n" + "Task Description - " + lengthDescription
-                            + "\n" + "Task ID - " + createTaskID(nameTask, devName)
+                            + "\n" + "Task ID - " + theTaskID.toUpperCase()
                             + "\n" + "Task Duration - " + taskHrs + "hrs";
         
         
